@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать контакт</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+	.is-invalid {
+    	    border: 2px solid red !important;
+	}
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Редактировать контакт</h1>
+        <form method="post" class="card p-4">
+            <div class="mb-3">
+	        <label for="full_name" class="form-label">ФИО</label>
+		<input type="text" name="full_name" class="form-control {{ 'is-invalid' if error and not full_name else '' }}" 
+                       value="{{ contact[1] if contact else '' }}" required>
+
+		{% if error and not full_name %}
+    		    <div class="invalid-feedback">Это поле обязательно для заполнения.</div>
+		{% endif %}
+	    </div>
+	    <div class="mb-3">
+	        <label for="phone_number" class="form-label">Номер телефона</label>
+	        <input type="text" name="phone_number" class="form-control {{ 'is-invalid' if error and not phone_number else '' }}" maxlength="12" required
+        	value="{{ contact[2] if contact[2] else '' }}"
+        	placeholder="{{ '+79876543210' if not contact[2] else '' }}">
+		 {% if error and not phone_number %}
+    		    <div class="invalid-feedback">Это поле обязательно для заполнения.</div>
+		{% endif %}
+		{% if error_message %}
+		    <div class="alert alert-danger" role="alert">
+    			{{ error_message }}
+		    </div>
+		{% endif %}
+		<small class="form-text text-muted">Введите номер в формате +79876543210 (11 цифр).</small>
+	    </div>
+            <div class="mb-3">
+                <label for="note" class="form-label">Заметка</label>
+                <input type="text" name="note" class="form-control" value="{{ contact[3] }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary mt-2">Назад</a>
+        </form>
+    </div>
+    <!-- Подключение Bootstrap JS (опционально) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
