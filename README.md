@@ -15,9 +15,9 @@ In addition, there is pgAdmin4 in the container, but it is unnesessary, it was o
 ## Installation instructions
 
 ### installation
-1. Clone repository
-git clone https://github.com/markachevap/phonebook_homework.git
-cd phonebook_homework
-2. Build the project via Docker
-docker-compose up --build
-3. Access at: http://localhost:8080
+1. Clone repository<br/>
+git clone https://github.com/markachevap/phonebook_homework.git<br/>
+cd phonebook_homework<br/>
+2. Build the project via Docker<br/>
+docker-compose up --build<br/>
+3. Access at: http://localhost:8080<br/>
